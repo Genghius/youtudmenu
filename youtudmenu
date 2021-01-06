@@ -1,0 +1,11 @@
+query=$(echo "" | dmenu -p "Search:" | tr ' ' '+')
+if [ "$query" ]; then
+	query=$(curl -s "https://www.youtube.com/results?search_query=""$query""&sp=EgIQAQ%253D%253D")
+	vid=$( echo "$query" | grep -Po '(/watch\?v=.{11})|(?<=title":{"runs":\[{"text":").+?(?="}\])' \
+	| paste - - | dmenu -l 10 | awk '{print $(NF)}'|| notify-send "Something went wrong...")
+	if [ "$vid" ]; then
+		mpv "https://youtube.com""$vid"
+	fi
+else
+	notify-send "No query, closing."
+fi

@@ -1,0 +1,11 @@
+youtudmenu
+
+________________________________________________________________________________
+
+browse youtube with dmenu and mpv
+
+
+
+can be installed by moving file to ~/.local/bin
+
+`cp youtudmenu ~/.local/bin`
